@@ -34,21 +34,21 @@ int main(int argc, char** argv) {
     cout << from << " " << to << " " << d.dijkstra(from, to) << endl;
   }
   gettimeofday(&t_end, NULL);
-  cout << "----------------------------------" << endl;
+  cerr << "----------------------------------" << endl;
 #ifdef FIBO
-  cout << "FIBO: ";
+  cerr << "FIBO: ";
 #endif
 #ifdef PAIR
-  cout << "PAIR: ";
+  cerr << "PAIR: ";
 #endif
 #ifdef LEFT
-  cout << "LEFT: ";
+  cerr << "LEFT: ";
 #endif
 #ifdef BINARY
-  cout << "BINARY: ";
+  cerr << "BINARY: ";
 #endif
-  cout << "#vertices: " << d.g.n_num << "  #arcs: " << d.g.a_num << endl;
-  cout << "#queries: " << sz << endl;
-  cout << "total time: " << (t_end.tv_sec * 1000 + t_end.tv_usec / 1000) - (t_start.tv_sec * 1000 + t_start.tv_usec / 1000)  << "msec" << endl;
-  cout << "average time: " << ((t_end.tv_sec * 1000 + t_end.tv_usec / 1000) - (t_start.tv_sec * 1000 + t_start.tv_usec / 1000)) / (double)sz << "msec" << endl;  
+  cerr << "#vertices: " << d.g.n_num << "  #arcs: " << d.g.a_num << endl;
+  cerr << "#queries: " << sz << endl;
+  cerr << "total time: " << (t_end.tv_sec * 1000 + t_end.tv_usec / 1000) - (t_start.tv_sec * 1000 + t_start.tv_usec / 1000)  << "msec" << endl;
+  cerr << "average time: " << ((t_end.tv_sec * 1000 + t_end.tv_usec / 1000) - (t_start.tv_sec * 1000 + t_start.tv_usec / 1000)) / (double)sz << "msec" << endl;  
 }
