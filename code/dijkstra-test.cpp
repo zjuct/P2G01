@@ -7,6 +7,7 @@
 #include<iostream>
 #include<random>
 #include<ctime>
+#include<sys/time.h>
 #include<unistd.h>
 
 #define SEED 12345678
@@ -23,8 +24,8 @@ int main(int argc, char** argv) {
   // 使用固定的种子，保证公平性
   default_random_engine e(SEED);
   size_t from, to;
-  time_t t_start, t_end;
-  t_start = time(0);
+  struct timeval t_start, t_end;
+  gettimeofday(&t_start, NULL);
   for(size_t i = 0; i < sz; i++) {
     from = u(e);
     do {
@@ -32,8 +33,7 @@ int main(int argc, char** argv) {
     }while(to == from);
     cout << from << " " << to << " " << d.dijkstra(from, to) << endl;
   }
-  t_end = time(0);
-
+  gettimeofday(&t_end, NULL);
   cout << "----------------------------------" << endl;
 #ifdef FIBO
   cout << "FIBO: ";
@@ -49,6 +49,6 @@ int main(int argc, char** argv) {
 #endif
   cout << "#vertices: " << d.g.n_num << "  #arcs: " << d.g.a_num << endl;
   cout << "#queries: " << sz << endl;
-  cout << "total time: " << t_end - t_start << "sec" << endl;
-  cout << "average time: " << (t_end - t_start) / (double)sz << "sec" << endl;  
+  cout << "total time: " << (t_end.tv_sec * 1000 + t_end.tv_usec / 1000) - (t_start.tv_sec * 1000 + t_start.tv_usec / 1000)  << "msec" << endl;
+  cout << "average time: " << ((t_end.tv_sec * 1000 + t_end.tv_usec / 1000) - (t_start.tv_sec * 1000 + t_start.tv_usec / 1000)) / (double)sz << "msec" << endl;  
 }
